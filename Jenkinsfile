@@ -37,6 +37,16 @@ pipeline {
                 echo 'Bash code here'
             }
         }
+        stage('Java') {
+            when { anyOf {
+                environment name: 'LANGUAGE', value: 'Java'
+                environment name: 'LANGUAGE', value: 'All'
+            }
+            }
+            steps {
+                echo 'Java code here'
+            }
+        }
     }
 }
 
