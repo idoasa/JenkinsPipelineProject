@@ -7,21 +7,28 @@ pipeline {
                 checkout scm
             }
         }
+         stage('Build') {
+            steps {
+                echo "Build process.."
+                sh '''
+                    cd ${WORKSPACE}/scripts/
+                    chmod 755 *
+                    touch results
+                  '''
+            }
+        }
         stage('Python') {
             when { anyOf {
                 environment name: 'LANGUAGE', value: 'Python'
                 environment name: 'LANGUAGE', value: 'All'
             }
           }
-        stage('Build') {
             steps {
-                echo "Build process.."
                 sh '''
-                    cd ${WORKSPACE}/scripts/
-                    chmod 755 *.sh
+                    ./pythonscript.py >> results
                   '''
             }
-        }
+       
         stage('C') {
             when { anyOf {
                 environment name: 'LANGUAGE', value: 'C'
@@ -29,7 +36,9 @@ pipeline {
             }
           }
             steps {
-                echo 'write C code here'
+                sh '''
+                    ./Cscript.c >> results
+                  '''
             }
         }
         stage('Bash') {
@@ -39,7 +48,9 @@ pipeline {
             }
           }
             steps {
-                echo 'Bash code here'
+                 sh '''
+                    .bashscript.sh >> results
+                  '''
             }
         }
     }
