@@ -28,7 +28,7 @@ pipeline {
                     ./pythonscript.py >> results
                   '''
             }
-       
+        }
         stage('C') {
             when { anyOf {
                 environment name: 'LANGUAGE', value: 'C'
