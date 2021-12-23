@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout SCM') {
+        stage('Clone Sources') {
             steps {
-                echo 'This will be execute to test language parameter'
+                checkout scm
             }
         }
         stage('Python') {
@@ -13,8 +13,13 @@ pipeline {
                 environment name: 'LANGUAGE', value: 'All'
             }
           }
+        stage('Build') {
             steps {
-                print('write python code here')
+                echo "Build process.."
+                sh '''
+                    cd ${WORKSPACE}/scripts/
+                    chmod 755 *.sh
+                  '''
             }
         }
         stage('C') {
