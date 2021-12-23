@@ -43,7 +43,7 @@ pipeline {
                 echo 'Saving Results process..'
                 sh '''
                    report_file="${HOME}/Documents/Deployment/report"
-                   mkdir -p ${HOME}/Documets/Deployment/
+                   mkdir -p ${HOME}/Documents/Deployment/
                    if [ -f "${report_file}" ]
                    then
                        echo "file ${report_file} exists"
