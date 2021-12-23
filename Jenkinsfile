@@ -8,7 +8,7 @@ pipeline {
                 sh '''
                     cd ${WORKSPACE}/scripts/
                     chmod 755 *
-                    touch results
+                    date > results
                   '''
             }
         }
