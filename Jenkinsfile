@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Sources') {
-            steps {
-                checkout scm
-            }
-        }
          stage('Build') {
             steps {
                 echo "Build process.."
@@ -25,6 +20,7 @@ pipeline {
           }
             steps {
                 sh '''
+                    cd ${WORKSPACE}/scripts/
                     ./pythonscript.py >> results
                   '''
             }
@@ -37,6 +33,7 @@ pipeline {
           }
             steps {
                 sh '''
+                    cd ${WORKSPACE}/scripts/
                     ./Cscript.c >> results
                   '''
             }
@@ -49,6 +46,7 @@ pipeline {
           }
             steps {
                  sh '''
+                    cd ${WORKSPACE}/scripts/
                     .bashscript.sh >> results
                   '''
             }
