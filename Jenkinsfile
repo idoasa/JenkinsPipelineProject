@@ -34,7 +34,8 @@ pipeline {
             steps {
                 sh '''
                     cd ${WORKSPACE}/scripts/
-                    ./Cscript.c >> results
+                    gcc -o Cscript Cscript.c
+                    ./Cscript >> results
                   '''
             }
         }
