@@ -48,7 +48,7 @@ pipeline {
             steps {
                  sh '''
                     cd ${WORKSPACE}/scripts/
-                    .bashscript.sh >> results
+                    ./bashscript.sh >> results
                   '''
             }
         }
