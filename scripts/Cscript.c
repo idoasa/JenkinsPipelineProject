@@ -1,7 +1,6 @@
-#include<stdio.h>
+#include <stdio.h>
 
-int main()
-{
+int main() {
   printf("This code written in C!");
   return 0;
 }
